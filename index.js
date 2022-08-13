@@ -5,7 +5,9 @@ const { exec } = require('child_process');
 
 // express object
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 
 app.post('/restart', (req, resp) => {
     exec('sudo systemctl restart minecraft', (error, stdout, stderr) => {
