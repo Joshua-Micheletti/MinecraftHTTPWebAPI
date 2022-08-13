@@ -1,9 +1,11 @@
 // library for HTTP requests
 const express = require("express");
+const cors = require('cors');
 const { exec } = require('child_process');
 
 // express object
 const app = express();
+app.use(cors());
 
 app.post('/restart', (req, resp) => {
     exec('sudo systemctl restart minecraft', (error, stdout, stderr) => {
