@@ -82,9 +82,13 @@ app.get('/checkStatus', (req, resp) => {
 
         console.log('stdout:\n' + stdout);
         output = stdout;
+        resp.status(200).send(output).end();
     });
 
-    resp.status(200).send(output).end();
+    if (!resp.headersSent) {
+        resp.status(400).end();
+    }
+    
 });
 
 app.post('/sendCommand', (req, resp) => {
