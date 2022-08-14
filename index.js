@@ -87,6 +87,7 @@ app.get('/checkStatus', (req, resp) => {
 
 app.post('/sendCommand', (req, resp) => {
     var command = req.query.command;
+    var output = "";
     console.log("echo '" + command + "' > /run/minecraft.stdin");
     exec("echo '" + command + "' > /run/minecraft.stdin", (error, stdout, stderr) => {
         if (error) {
@@ -100,11 +101,11 @@ app.post('/sendCommand', (req, resp) => {
         }
 
         console.log('stdout:\n' + stdout);
-        resp.status(200).send(stdout).end();
-        return;
+        output = stdout;
     });
 
-    resp.status(400).end();
+    console.log(output);
+    resp.status(400).send(output).end();
 });
 
 
