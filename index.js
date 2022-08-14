@@ -13,57 +13,57 @@ app.post('/restart', (req, resp) => {
     exec('sudo systemctl restart minecraft', (error, stdout, stderr) => {
         if (error) {
             console.error('error: ' + error.message);
+            resp.status(400).send(error.message).end();
             return;
         }
 
         if (stderr) {
             console.error('stderr: ' + stderr);
+            resp.status(400).send(stderr).end();
             return;
         }
 
         console.log('stdout:\n' + stdout);
         resp.status(200).send(stdout).end();
     });
-
-    resp.status(400).end();
 });
 
 app.post('/start', (req, resp) => {
     exec('sudo systemctl start minecraft', (error, stdout, stderr) => {
         if (error) {
             console.error('error: ' + error.message);
+            resp.status(400).send(error.message).end();
             return;
         }
 
         if (stderr) {
             console.error('stderr: ' + stderr);
+            resp.status(400).send(stderr).end();
             return;
         }
 
         console.log('stdout:\n' + stdout);
         resp.status(200).send(stdout).end();
     });
-
-    resp.status(400).end();
 });
 
 app.post('/stop', (req, resp) => {
     exec('sudo systemctl stop minecraft', (error, stdout, stderr) => {
         if (error) {
             console.error('error: ' + error.message);
+            resp.status(400).send(error.message).end();
             return;
         }
 
         if (stderr) {
             console.error('stderr: ' + stderr);
+            resp.status(400).send(stderr).end();
             return;
         }
 
         console.log('stdout:\n' + stdout);
         resp.status(200).send(stdout).end();
     });
-
-    resp.status(400).end();
 });
 
 app.get('/checkStatus', (req, resp) => {
@@ -72,11 +72,13 @@ app.get('/checkStatus', (req, resp) => {
     exec('sudo systemctl status minecraft', (error, stdout, stderr) => {
         if (error) {
             console.error('error: ' + error.message);
+            resp.status(400).send(error.message).end();
             return;
         }
 
         if (stderr) {
             console.error('stderr: ' + stderr);
+            resp.status(400).send(stderr).end();
             return;
         }
 
@@ -93,20 +95,20 @@ app.post('/sendCommand', (req, resp) => {
     exec("echo '" + command + "' > /run/minecraft.stdin", (error, stdout, stderr) => {
         if (error) {
             console.error('error: ' + error.message);
+            resp.status(400).send(error.message).end();
             return;
         }
 
         if (stderr) {
             console.error('stderr: ' + stderr);
+            resp.status(400).send(stderr).end();
             return;
         }
 
         console.log('stdout:\n' + stdout);
         output = stdout;
+        resp.status(200).send(stdout).end();
     });
-
-    console.log(output);
-    resp.status(400).send(output).end();
 });
 
 
