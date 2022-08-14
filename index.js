@@ -101,6 +101,7 @@ app.post('/sendCommand', (req, resp) => {
 
         console.log('stdout:\n' + stdout);
         resp.status(200).send(stdout).end();
+        return;
     });
 
     resp.status(400).end();
