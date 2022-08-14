@@ -22,9 +22,10 @@ app.post('/restart', (req, resp) => {
         }
 
         console.log('stdout:\n' + stdout);
+        resp.status(200).send(stdout).end();
     });
 
-    resp.status(200).end();
+    resp.status(400).end();
 });
 
 app.post('/start', (req, resp) => {
@@ -40,9 +41,10 @@ app.post('/start', (req, resp) => {
         }
 
         console.log('stdout:\n' + stdout);
+        resp.status(200).send(stdout).end();
     });
 
-    resp.status(200).end();
+    resp.status(400).end();
 });
 
 app.post('/stop', (req, resp) => {
@@ -58,9 +60,10 @@ app.post('/stop', (req, resp) => {
         }
 
         console.log('stdout:\n' + stdout);
+        resp.status(200).send(stdout).end();
     });
 
-    resp.status(200).end();
+    resp.status(400).end();
 });
 
 app.get('/checkStatus', (req, resp) => {
@@ -76,9 +79,10 @@ app.get('/checkStatus', (req, resp) => {
         }
 
         console.log('stdout:\n' + stdout);
+        resp.status(200).send(stdout).end();
     });
 
-    resp.status(200).end();
+    resp.status(400).end();
 });
 
 app.post('/sendCommand', (req, resp) => {
@@ -96,9 +100,10 @@ app.post('/sendCommand', (req, resp) => {
         }
 
         console.log('stdout:\n' + stdout);
+        resp.status(200).send(stdout).end();
     });
 
-    resp.status(200).end();
+    resp.status(400).end();
 });
 
 
