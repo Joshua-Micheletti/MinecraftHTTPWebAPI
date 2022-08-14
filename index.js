@@ -67,6 +67,8 @@ app.post('/stop', (req, resp) => {
 });
 
 app.get('/checkStatus', (req, resp) => {
+    var output = "";
+
     exec('sudo systemctl status minecraft', (error, stdout, stderr) => {
         if (error) {
             console.error('error: ' + error.message);
@@ -79,10 +81,10 @@ app.get('/checkStatus', (req, resp) => {
         }
 
         console.log('stdout:\n' + stdout);
-        resp.status(200).send(stdout).end();
+        output = stdout;
     });
 
-    resp.status(400).end();
+    resp.status(200).send(output).end();
 });
 
 app.post('/sendCommand', (req, resp) => {
